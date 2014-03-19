@@ -49,6 +49,7 @@
 		  </result>
 		</action>
 		<!-- 转到普通用户操作页面 -->
+<!-- 转到普通用户操作页面 -->
 		<action name="getlist"
 			class="listProductAction">
 			<result name="success">/WEB-INF/jsp/get_list.jsp</result>
