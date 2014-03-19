@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE struts PUBLIC
 	"-//Apache Software Foundation//DTD Struts Configuration 2.1//EN"
 	"http://struts.apache.org/dtds/struts-2.1.dtd">
@@ -49,6 +49,7 @@
 		  </result>
 		</action>
 		<!-- 转到普通用户操作页面 -->
+<!-- 转到普通用户操作页面 -->
 		<action name="getlist"
 			class="listProductAction">
 			<result name="success">/WEB-INF/jsp/get_list.jsp</result>
