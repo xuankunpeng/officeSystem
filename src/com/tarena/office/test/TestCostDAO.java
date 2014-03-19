@@ -11,7 +11,7 @@ public class TestCostDAO {
 	
 	@Test
 	 public void testFindbypwd() throws Exception{
-		String conf="/applicationContext.xml";
+		String conf="/bapplicationContext.xml";
 		ApplicationContext ac=new ClassPathXmlApplicationContext(conf);
 		AdminDAO costDAo=(AdminDAO) ac.getBean("hibernateAdminDAO");
 		Admin admin= costDAo.findByCodeAndPwd("xuan","xkp123");
