@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.1//EN"
+	"http://struts.apache.org/dtds/struts-2.1.dtd">
+
+<struts>
+	<package name="cost" namespace="/product" extends="struts-default">
+		<action name="loginform">
+			<result name="success">/WEB-INF/jsp/login_form.jsp</result>
+		</action>
+		<action name="login"
+			class="loginAction">
+			<result name="success">/WEB-INF/jsp/main.jsp</result>
+			<result name="fail">/WEB-INF/jsp/login_form.jsp</result>
+		</action>
+		
+		<action name="list"
+			class="listProductAction">
+			<result name="success">/WEB-INF/jsp/product_list.jsp</result>
+		</action>
+		
+		<action name="delete"
+			class="deleteProductAction">
+			<result name="success">/WEB-INF/jsp/delete_ok.jsp</result>
+		</action>
+		<action name="updateForm"
+			class="updateProductFormAction">
+			<result name="success">/WEB-INF/jsp/product_updateform.jsp</result>
+		</action>
+		<action name="update1"
+			class="updateProductAction">
+			<result type="redirectAction">list</result>
+		</action>
+		<action name="update2"
+			class="updateGetAction">
+			<result type="redirectAction">getlist</result>
+		</action>
+		<action name="form">
+			<result name="success">/WEB-INF/jsp/add_form.jsp</result>
+		</action>
+		<action name="add" class="addProductAction">
+		  <result type="redirectAction">
+		    list
+		  </result>
+		</action>
+		<action name="updateAmount" class="updateAmountAction">
+		  <result type="redirectAction">
+		    list
+		  </result>
+		</action>
+		<!-- 转到普通用户操作页面 -->
+		<action name="getlist"
+			class="listProductAction">
+			<result name="success">/WEB-INF/jsp/get_list.jsp</result>
+		</action>
+		<!-- 领取 -->
+		<action name="get" class="updateProductFormAction">
+		    <result name="success">/WEB-INF/jsp/get_form.jsp</result>
+		</action>
+	</package>
+
+</struts>

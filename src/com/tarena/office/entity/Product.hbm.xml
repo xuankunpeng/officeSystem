@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- 定义ADMIN表和Admin类型之间的映射信息 -->
+<hibernate-mapping>
+	<class name="com.tarena.office.entity.Product" 
+		table="PRODUCT">
+		<!-- 主键映射 -->
+		<id name="id" type="integer">
+			<column name="ID"></column>
+			<!-- 指定主键值生成方式,
+			采用序列方式生成主键 -->
+			<generator class="identity">
+				
+			</generator>
+		</id>
+		<!-- 非主键映射 -->
+		<property name="name" type="string">
+			<column name="NAME"></column>
+		</property>
+		<property name="price" type="double">
+			<column name="PRICE"></column>
+		</property>
+		<property name="amount" type="integer">
+			<column name="AMOUNT"></column>
+		</property>
+		<property name="description" type="string">
+			<column name="DESCRIPTION"></column>
+		</property>
+	</class>
+
+</hibernate-mapping>

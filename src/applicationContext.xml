@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" 
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xmlns:tx="http://www.springframework.org/schema/tx" 
+		xmlns:aop="http://www.springframework.org/schema/aop"
+		xmlns:context="http://www.springframework.org/schema/context" 
+		xmlns:jee="http://www.springframework.org/schema/jee"
+		xsi:schemaLocation="
+			http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd
+			http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd
+			http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+			http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd
+			http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-2.5.xsd">
+	<!-- 组件扫描 -->
+	<context:component-scan base-package="com.tarena.office"/>
+	<bean id="myDataSource" destroy-method="close"
+	  class="org.apache.commons.dbcp.BasicDataSource">
+		<property name="url" value="jdbc:mysql://localhost:3306/xuankunpeng?useUnicode=true&amp;characterEncoding=UTF-8"></property>
+		<property name="driverClassName" value="com.mysql.jdbc.Driver"></property>
+		<property name="username" value="root"></property>
+	    <property name="password" value="xkp"></property>
+	    <!-- 设置连接最大数 -->
+		<property name="maxActive" value="20">
+		</property>
+		<!-- 设置连接池实例化时初始创建的连接数 -->
+		<property name="initialSize" value="1">
+		</property>
+	</bean>
+	<bean id="sessionFactory" class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+	  <!-- 注入数据库连接信息 -->
+	 <property name="dataSource" ref="myDataSource"></property>
+	<!-- 注入hibernate配置参数 -->
+	 <property name="hibernateProperties">
+	   <props>
+	     <prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+	     <prop key="hibernate.format_sql"></prop>
+	     <prop key="hibernate.show_sql"></prop>
+	   </props>
+	 </property>
+	 <property name="mappingResources">
+	   <list>
+	    <value>com/tarena/office/entity/Admin.hbm.xml</value>
+	    <value>com/tarena/office/entity/Product.hbm.xml</value>
+	   </list>
+	 </property>
+	</bean>
+	<!-- 定义事务管理bean -->
+	
+	<bean id="txManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<!-- 开启事误注解配置 -->
+	<tx:annotation-driven proxy-target-class="true" 
+	   transaction-manager="txManager"/>
+</beans>
